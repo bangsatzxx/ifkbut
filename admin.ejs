@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #0f0; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #0f0; padding: 8px; text-align: left; }
+    th { background-color: #222; }
+  </style>
+</head>
+<body>
+  <h1>Device Logs</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Brand</th>
+        <th>Battery</th>
+        <th>Language</th>
+        <th>IP</th>
+        <th>User Agent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% logs.forEach(log => { %>
+        <tr>
+          <td><%= log.timestamp %></td>
+          <td><%= log.brand %></td>
+          <td><%= log.battery %></td>
+          <td><%= log.language %></td>
+          <td><%= log.ip %></td>
+          <td><%= log.userAgent %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
