@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Device Info</title>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    async function getInfo() {
+      const battery = await navigator.getBattery();
+      const ip = await fetch("https://api.ipify.org?format=json").then(res => res.json());
+      const data = {
+        brand: navigator.vendor || "Unknown",
+        battery: (battery.level * 100) + '%',
+        language: navigator.language,
+        ip: ip.ip,
+        userAgent: navigator.userAgent
+      };
+      fetch('/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    }
+    getInfo();
+  </script>
+</body>
+</html>
